@@ -309,9 +309,9 @@ print(Preliminary.Summary.of.listings)</code></pre>
   # Groups:   Event.Date [3]
     Event.Date        Event.Brite MeetUp
     &lt;chr&gt;                   &lt;int&gt;  &lt;int&gt;
-  1 Sat, Jan 16, 2021         334     47
-  2 Sat, Jan 23, 2021         554     29
-  3 Sat, Jan 9, 2021          374     40</code></pre>
+  1 Sat, Jan 16, 2021         347     47
+  2 Sat, Jan 23, 2021         574     29
+  3 Sat, Jan 9, 2021          386     40</code></pre>
 <pre class="r"><code>######################################Step 5: Selecting events of interests and final summary #####################
 Events.of.Interest =
 Winter.Workshop.2021.Combined.Listing %&gt;% slice(which(grepl('career|job|tech|code|cville|charlottesville|computer|silicon|science', Event.Name, ignore.case = TRUE) == TRUE)) %&gt;% # searching by key words 
@@ -320,81 +320,78 @@ unique() # Ensuring events are unique
 print(Events.of.Interest)</code></pre>
 <pre><code>              Event.Date   Event.Time
   25    Sat, Jan 9, 2021  5:00 PM PST
-  65    Sat, Jan 9, 2021  1:00 PM PST
+  71    Sat, Jan 9, 2021  1:00 PM PST
   105   Sat, Jan 9, 2021  5:00 PM GMT
-  500   Sat, Jan 9, 2021  7:00 AM MST
-  532   Sat, Jan 9, 2021  1:00 PM GMT
-  637   Sat, Jan 9, 2021  2:00 AM EST
-  650   Sat, Jan 9, 2021  7:00 AM GMT
-  652   Sat, Jan 9, 2021 11:30 PM CST
-  689   Sat, Jan 9, 2021  7:00 PM CET
-  740  Sat, Jan 16, 2021  5:00 PM PST
-  759  Sat, Jan 16, 2021  9:00 AM CST
-  780  Sat, Jan 16, 2021  1:00 PM PST
-  808  Sat, Jan 16, 2021  5:00 PM GMT
-  1197 Sat, Jan 16, 2021  7:00 AM MST
-  1229 Sat, Jan 16, 2021  1:00 PM GMT
-  1326 Sat, Jan 16, 2021 11:30 PM CST
-  1336 Sat, Jan 16, 2021  2:00 AM EST
-  1349 Sat, Jan 16, 2021  7:00 AM GMT
-  1386 Sat, Jan 16, 2021  7:00 PM CET
-  1426 Sat, Jan 23, 2021  5:00 PM PST
-  1497 Sat, Jan 23, 2021  5:00 PM GMT
-  987  Sat, Jan 23, 2021     10:00 AM
+  508   Sat, Jan 9, 2021  7:00 AM MST
+  533   Sat, Jan 9, 2021  1:00 PM GMT
+  639   Sat, Jan 9, 2021 11:30 PM CST
+  642   Sat, Jan 9, 2021  2:00 AM EST
+  656   Sat, Jan 9, 2021  7:00 AM GMT
+  694   Sat, Jan 9, 2021  7:00 PM CET
+  736  Sat, Jan 16, 2021  5:00 PM PST
+  754  Sat, Jan 16, 2021  9:00 AM CST
+  783  Sat, Jan 16, 2021  1:00 PM PST
+  819  Sat, Jan 16, 2021  5:00 PM GMT
+  1205 Sat, Jan 16, 2021  7:00 AM MST
+  1230 Sat, Jan 16, 2021  1:00 PM GMT
+  1335 Sat, Jan 16, 2021 11:30 PM CST
+  1338 Sat, Jan 16, 2021  2:00 AM EST
+  1388 Sat, Jan 16, 2021  7:00 PM CET
+  1428 Sat, Jan 23, 2021  5:00 PM PST
+  1499 Sat, Jan 23, 2021  5:00 PM GMT
+  981  Sat, Jan 23, 2021     10:00 AM
                                                                          Event.Name
   25              Career pathways /counseling and referrals to Silicon Valley jobs 
-  65                                    FREE LIVE-Webinar Financial Career Seminar 
+  71                                    FREE LIVE-Webinar Financial Career Seminar 
   105         Career Head Start Masterclass - IT &amp; Consulting &amp; Project Management 
-  500                                             Career Event for Business Majors 
-  532          Java Basics in 3 hours.  Code the Hangman Game.  Virtual Classroom. 
-  637                                  Science NBE Package (For independent study) 
-  650  Business &amp; Professional &gt; Sales &amp; Marketing / Career / Startups &amp; Small Bus 
-  652  Artificial Intelligence | Online Instructor Training at Vepsun Technologies 
-  689   Der Affiliate Code - Ralf Schmitz - einzigartige Erfolgsgranate  (Klicken) 
-  740             Career pathways /counseling and referrals to Silicon Valley jobs 
-  759                                         CODE + BREWS Virtual: Third Saturday 
-  780                                   FREE LIVE-Webinar Financial Career Seminar 
-  808         Career Head Start Masterclass - IT &amp; Consulting &amp; Project Management 
-  1197                                            Career Event for Business Majors 
-  1229         Java Basics in 3 hours.  Code the Hangman Game.  Virtual Classroom. 
-  1326 Artificial Intelligence | Online Instructor Training at Vepsun Technologies 
-  1336                                 Science NBE Package (For independent study) 
-  1349 Business &amp; Professional &gt; Sales &amp; Marketing / Career / Startups &amp; Small Bus 
-  1386  Der Affiliate Code - Ralf Schmitz - einzigartige Erfolgsgranate  (Klicken) 
-  1426            Career pathways /counseling and referrals to Silicon Valley jobs 
-  1497        Career Head Start Masterclass - IT &amp; Consulting &amp; Project Management 
-  987                                 LeetCode: online : Questions on google groups
+  508                                             Career Event for Business Majors 
+  533          Java Basics in 3 hours.  Code the Hangman Game.  Virtual Classroom. 
+  639  Artificial Intelligence | Online Instructor Training at Vepsun Technologies 
+  642                                  Science NBE Package (For independent study) 
+  656  Business &amp; Professional &gt; Sales &amp; Marketing / Career / Startups &amp; Small Bus 
+  694   Der Affiliate Code - Ralf Schmitz - einzigartige Erfolgsgranate  (Klicken) 
+  736             Career pathways /counseling and referrals to Silicon Valley jobs 
+  754                                         CODE + BREWS Virtual: Third Saturday 
+  783                                   FREE LIVE-Webinar Financial Career Seminar 
+  819         Career Head Start Masterclass - IT &amp; Consulting &amp; Project Management 
+  1205                                            Career Event for Business Majors 
+  1230         Java Basics in 3 hours.  Code the Hangman Game.  Virtual Classroom. 
+  1335 Artificial Intelligence | Online Instructor Training at Vepsun Technologies 
+  1338                                 Science NBE Package (For independent study) 
+  1388  Der Affiliate Code - Ralf Schmitz - einzigartige Erfolgsgranate  (Klicken) 
+  1428            Career pathways /counseling and referrals to Silicon Valley jobs 
+  1499        Career Head Start Masterclass - IT &amp; Consulting &amp; Project Management 
+  981                                 LeetCode: online : Questions on google groups
             Source
   25   Event.Brite
-  65   Event.Brite
+  71   Event.Brite
   105  Event.Brite
-  500  Event.Brite
-  532  Event.Brite
-  637  Event.Brite
-  650  Event.Brite
-  652  Event.Brite
-  689  Event.Brite
-  740  Event.Brite
-  759  Event.Brite
-  780  Event.Brite
-  808  Event.Brite
-  1197 Event.Brite
-  1229 Event.Brite
-  1326 Event.Brite
-  1336 Event.Brite
-  1349 Event.Brite
-  1386 Event.Brite
-  1426 Event.Brite
-  1497 Event.Brite
-  987       MeetUp</code></pre>
+  508  Event.Brite
+  533  Event.Brite
+  639  Event.Brite
+  642  Event.Brite
+  656  Event.Brite
+  694  Event.Brite
+  736  Event.Brite
+  754  Event.Brite
+  783  Event.Brite
+  819  Event.Brite
+  1205 Event.Brite
+  1230 Event.Brite
+  1335 Event.Brite
+  1338 Event.Brite
+  1388 Event.Brite
+  1428 Event.Brite
+  1499 Event.Brite
+  981       MeetUp</code></pre>
 <pre class="r"><code># Final summary of events of interest
 Events.of.Interest %&gt;% group_by(Event.Date) %&gt;% dplyr::summarise(no.of.events = n()) %&gt;% arrange(no.of.events)</code></pre>
 <pre><code>  # A tibble: 3 x 2
     Event.Date        no.of.events
     &lt;chr&gt;                    &lt;int&gt;
   1 Sat, Jan 23, 2021            3
-  2 Sat, Jan 9, 2021             9
-  3 Sat, Jan 16, 2021           10</code></pre>
+  2 Sat, Jan 16, 2021            9
+  3 Sat, Jan 9, 2021             9</code></pre>
 <pre class="r"><code>######################################End of Step 5: Selecting events of interests and final summary #####################</code></pre>
 <p>Based on final summary of events of interest, the date with the least number of events is perhaps the best one. You should still comb through the list of events on that date to conclusively decide if it is really the best date. In this example, Jan 23, 2021 seems like the best date to hold a science, technology or career related online event.</p>
 </div>

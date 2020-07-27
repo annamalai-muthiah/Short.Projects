@@ -7,9 +7,7 @@ output:
     keep_md: yes
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
+
 ## 
 
 **Purpose**: If you are interested in planning science, technology or career related online events and you are looking at a few dates (Jan 9, 16 and 23, 2021 in this example) to choose from, one thing you might want to consider doing is to scrap data (event listings) from websites such as eventbrite, Meetup and Charlottesville Business Innovation Council (CBIC) calendar, clean the data and summarize the information to then check what other concurrent and related events are happening on those dates so as to avoid conflicts.
@@ -22,8 +20,8 @@ knitr::opts_chunk$set(echo = TRUE)
 **Step 4**. Combine 1, 2 and 3 and remove "virtual game nights" from the listings (there were too many of these and were not science, technology or career related) and filter only for Jan 9, 16 or 23<br /> 
 **Step 5**. Filter for key words career, job, tech, code, cville, charlottesville, computer, silicon or science in event names and provide a final tally of events for each date
 
-```{r cars, echo=TRUE, warning=FALSE, message=FALSE, tidy=TRUE, cache=TRUE, comment=" "}
 
+```r
 ###################################################Step 1: Scrapping Data from EventBrite ####################
 # Loading the library
 require(tidyverse) # for data wrangling
@@ -139,15 +137,111 @@ Preliminary.Summary.of.listings = Winter.Workshop.2021.Combined.Listing %>% grou
 ################################End of Step 4: Combining event listings from meetup and eventbrite and cleaning up data
 
 print(Preliminary.Summary.of.listings)
+```
+
+```
+  # A tibble: 3 x 3
+  # Groups:   Event.Date [3]
+    Event.Date        Event.Brite MeetUp
+    <chr>                   <int>  <int>
+  1 Sat, Jan 16, 2021         347     47
+  2 Sat, Jan 23, 2021         574     29
+  3 Sat, Jan 9, 2021          386     40
+```
+
+```r
 ######################################Step 5: Selecting events of interests and final summary #####################
 Events.of.Interest =
 Winter.Workshop.2021.Combined.Listing %>% slice(which(grepl('career|job|tech|code|cville|charlottesville|computer|silicon|science', Event.Name, ignore.case = TRUE) == TRUE)) %>% # searching by key words 
 unique() # Ensuring events are unique
 
 print(Events.of.Interest)
+```
 
+```
+              Event.Date   Event.Time
+  25    Sat, Jan 9, 2021  5:00 PM PST
+  71    Sat, Jan 9, 2021  1:00 PM PST
+  105   Sat, Jan 9, 2021  5:00 PM GMT
+  508   Sat, Jan 9, 2021  7:00 AM MST
+  533   Sat, Jan 9, 2021  1:00 PM GMT
+  639   Sat, Jan 9, 2021 11:30 PM CST
+  642   Sat, Jan 9, 2021  2:00 AM EST
+  656   Sat, Jan 9, 2021  7:00 AM GMT
+  694   Sat, Jan 9, 2021  7:00 PM CET
+  736  Sat, Jan 16, 2021  5:00 PM PST
+  754  Sat, Jan 16, 2021  9:00 AM CST
+  783  Sat, Jan 16, 2021  1:00 PM PST
+  819  Sat, Jan 16, 2021  5:00 PM GMT
+  1205 Sat, Jan 16, 2021  7:00 AM MST
+  1230 Sat, Jan 16, 2021  1:00 PM GMT
+  1335 Sat, Jan 16, 2021 11:30 PM CST
+  1338 Sat, Jan 16, 2021  2:00 AM EST
+  1388 Sat, Jan 16, 2021  7:00 PM CET
+  1428 Sat, Jan 23, 2021  5:00 PM PST
+  1499 Sat, Jan 23, 2021  5:00 PM GMT
+  981  Sat, Jan 23, 2021     10:00 AM
+                                                                         Event.Name
+  25              Career pathways /counseling and referrals to Silicon Valley jobs 
+  71                                    FREE LIVE-Webinar Financial Career Seminar 
+  105         Career Head Start Masterclass - IT & Consulting & Project Management 
+  508                                             Career Event for Business Majors 
+  533          Java Basics in 3 hours.  Code the Hangman Game.  Virtual Classroom. 
+  639  Artificial Intelligence | Online Instructor Training at Vepsun Technologies 
+  642                                  Science NBE Package (For independent study) 
+  656  Business & Professional > Sales & Marketing / Career / Startups & Small Bus 
+  694   Der Affiliate Code - Ralf Schmitz - einzigartige Erfolgsgranate  (Klicken) 
+  736             Career pathways /counseling and referrals to Silicon Valley jobs 
+  754                                         CODE + BREWS Virtual: Third Saturday 
+  783                                   FREE LIVE-Webinar Financial Career Seminar 
+  819         Career Head Start Masterclass - IT & Consulting & Project Management 
+  1205                                            Career Event for Business Majors 
+  1230         Java Basics in 3 hours.  Code the Hangman Game.  Virtual Classroom. 
+  1335 Artificial Intelligence | Online Instructor Training at Vepsun Technologies 
+  1338                                 Science NBE Package (For independent study) 
+  1388  Der Affiliate Code - Ralf Schmitz - einzigartige Erfolgsgranate  (Klicken) 
+  1428            Career pathways /counseling and referrals to Silicon Valley jobs 
+  1499        Career Head Start Masterclass - IT & Consulting & Project Management 
+  981                                 LeetCode: online : Questions on google groups
+            Source
+  25   Event.Brite
+  71   Event.Brite
+  105  Event.Brite
+  508  Event.Brite
+  533  Event.Brite
+  639  Event.Brite
+  642  Event.Brite
+  656  Event.Brite
+  694  Event.Brite
+  736  Event.Brite
+  754  Event.Brite
+  783  Event.Brite
+  819  Event.Brite
+  1205 Event.Brite
+  1230 Event.Brite
+  1335 Event.Brite
+  1338 Event.Brite
+  1388 Event.Brite
+  1428 Event.Brite
+  1499 Event.Brite
+  981       MeetUp
+```
+
+```r
 # Final summary of events of interest
 Events.of.Interest %>% group_by(Event.Date) %>% dplyr::summarise(no.of.events = n()) %>% arrange(no.of.events)
+```
+
+```
+  # A tibble: 3 x 2
+    Event.Date        no.of.events
+    <chr>                    <int>
+  1 Sat, Jan 23, 2021            3
+  2 Sat, Jan 16, 2021            9
+  3 Sat, Jan 9, 2021             9
+```
+
+```r
 ######################################End of Step 5: Selecting events of interests and final summary #####################
 ```
 
