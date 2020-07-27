@@ -1,14 +1,5 @@
----
-title: "Web Scrapping of Event Listings"
-author: "Annamalai Muthiah"
-date: "July 15, 2020"
-output: 
-  html_document: 
-    keep_md: yes
----
 
-
-## 
+## Web Scrapping of Event Listings
 
 **Purpose**: If you are interested in planning science, technology or career related online events and you are looking at a few dates (Jan 9, 16 and 23, 2021 in this example) to choose from, one thing you might want to consider doing is to scrap data (event listings) from websites such as eventbrite, Meetup and Charlottesville Business Innovation Council (CBIC) calendar, clean the data and summarize the information to then check what other concurrent and related events are happening on those dates so as to avoid conflicts.
 
