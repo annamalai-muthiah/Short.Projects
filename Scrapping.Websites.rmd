@@ -22,7 +22,7 @@ knitr::opts_chunk$set(echo = TRUE)
 **Step 4**. Combine 1, 2 and 3 and remove "virtual game nights" from the listings (there were too many of these and were not science, technology or career related) and filter only for Jan 9, 16 or 23<br /> 
 **Step 5**. Filter for key words career, job, tech, code, cville, charlottesville, computer, silicon or science in event names and provide a final tally of events for each date
 
-```{r cars, echo=TRUE, warning=FALSE, message=FALSE, tidy=TRUE, cache=TRUE, comment=" "}
+```{r step1, echo=TRUE, warning=FALSE, message=FALSE, tidy=TRUE, cache=TRUE, comment=" "}
 
 ###################################################Step 1: Scrapping Data from EventBrite ####################
 # Loading the library
@@ -84,7 +84,9 @@ for (j in 1:length(Date.Numbers))
 colnames(Event.Brite.Listing) = c("Event.Date", "Event.Time", "Event.Name")
 Event.Brite.Listing = unique(Event.Brite.Listing)
 ###############################################End of Step 1: Scrapping Data from EventBrite ####################
+```
 
+```{r step2, echo=TRUE, warning=FALSE, message=FALSE, tidy=TRUE, cache=TRUE, comment=" "}
 ############################################### Step 2: Copying data from Meetup ################
 # Author's note: I had trouble with the meetupr package from github (installed using remotes::install_github("rladies/meetupr")) that was capable of communicating with Meetup's API. I tried using it but it threw up many errors. I tried solving those error but it was too challenging. Therefore, I gave up.
 # Author's note: read_html approach used above with eventbrite involves inspecting html nodes and selecting the correct one. It was not easy to find the nodes to extract the Meetup event details. So I copied the data from the Meetup website, pasted it on to a csv file, read it into R, then formatted the data to extract the event_name, event_date and event_time
@@ -120,9 +122,13 @@ for (i in 1:length(Date.Numbers)) {
 colnames(Meetup.Listing) = c("Event.Date", "Event.Time", "Event.Name")
 Meetup.Listing = unique(Meetup.Listing)
 ################################################################ End of Step 2:Copying data from Meetup #################
+```
 
+```{r step3, echo=TRUE, warning=FALSE, message=FALSE, tidy=TRUE, cache=TRUE, comment=" "}
 # Step 3:Due to absence of data from CBIC Calendar, there was not much to do 
+```
 
+```{r step4, echo=TRUE, warning=FALSE, message=FALSE, tidy=TRUE, cache=TRUE, comment=" "}
 ################################# Step 4: Combining event listings from Meetup and eventbrite and cleaning up data 
 
 # Step 4.1: Combining the data frames from eventbrite and Meetup and clean-up
@@ -137,7 +143,9 @@ Winter.Workshop.2021.Combined.Listing =
 # Step 4.2: This step summarises the data as number of events counted by date and data source (meet-up or event brite)  
 Preliminary.Summary.of.listings = Winter.Workshop.2021.Combined.Listing %>% group_by(Event.Date, Source) %>% dplyr::summarise(no.of.events = n()) %>% spread(Source, no.of.events) # spread function shows the same summary (number of events) with date as row names and source as column names
 ################################End of Step 4: Combining event listings from meetup and eventbrite and cleaning up data
+```
 
+```{r step5, echo=TRUE, warning=FALSE, message=FALSE, tidy=TRUE, cache=TRUE, comment=" "}
 print(Preliminary.Summary.of.listings)
 ######################################Step 5: Selecting events of interests and final summary #####################
 Events.of.Interest =

@@ -249,9 +249,8 @@ for (j in 1:length(Date.Numbers))
 # Step 1.4: Adding column names to the data frame and removing redundancy in data frame through unique() function
 colnames(Event.Brite.Listing) = c(&quot;Event.Date&quot;, &quot;Event.Time&quot;, &quot;Event.Name&quot;)
 Event.Brite.Listing = unique(Event.Brite.Listing)
-###############################################End of Step 1: Scrapping Data from EventBrite ####################
-
-############################################### Step 2: Copying data from Meetup ################
+###############################################End of Step 1: Scrapping Data from EventBrite ####################</code></pre>
+<pre class="r"><code>############################################### Step 2: Copying data from Meetup ################
 # Author's note: I had trouble with the meetupr package from github (installed using remotes::install_github(&quot;rladies/meetupr&quot;)) that was capable of communicating with Meetup's API. I tried using it but it threw up many errors. I tried solving those error but it was too challenging. Therefore, I gave up.
 # Author's note: read_html approach used above with eventbrite involves inspecting html nodes and selecting the correct one. It was not easy to find the nodes to extract the Meetup event details. So I copied the data from the Meetup website, pasted it on to a csv file, read it into R, then formatted the data to extract the event_name, event_date and event_time
 
@@ -285,11 +284,9 @@ for (i in 1:length(Date.Numbers)) {
 # Step 2.4: Creating column names to the data frame and cutting out redundant rows
 colnames(Meetup.Listing) = c(&quot;Event.Date&quot;, &quot;Event.Time&quot;, &quot;Event.Name&quot;)
 Meetup.Listing = unique(Meetup.Listing)
-################################################################ End of Step 2:Copying data from Meetup #################
-
-# Step 3:Due to absence of data from CBIC Calendar, there was not much to do 
-
-################################# Step 4: Combining event listings from Meetup and eventbrite and cleaning up data 
+################################################################ End of Step 2:Copying data from Meetup #################</code></pre>
+<pre class="r"><code># Step 3:Due to absence of data from CBIC Calendar, there was not much to do </code></pre>
+<pre class="r"><code>################################# Step 4: Combining event listings from Meetup and eventbrite and cleaning up data 
 
 # Step 4.1: Combining the data frames from eventbrite and Meetup and clean-up
 Winter.Workshop.2021.Combined.Listing = 
@@ -302,16 +299,15 @@ Winter.Workshop.2021.Combined.Listing =
 
 # Step 4.2: This step summarises the data as number of events counted by date and data source (meet-up or event brite)  
 Preliminary.Summary.of.listings = Winter.Workshop.2021.Combined.Listing %&gt;% group_by(Event.Date, Source) %&gt;% dplyr::summarise(no.of.events = n()) %&gt;% spread(Source, no.of.events) # spread function shows the same summary (number of events) with date as row names and source as column names
-################################End of Step 4: Combining event listings from meetup and eventbrite and cleaning up data
-
-print(Preliminary.Summary.of.listings)</code></pre>
+################################End of Step 4: Combining event listings from meetup and eventbrite and cleaning up data</code></pre>
+<pre class="r"><code>print(Preliminary.Summary.of.listings)</code></pre>
 <pre><code>  # A tibble: 3 x 3
   # Groups:   Event.Date [3]
     Event.Date        Event.Brite MeetUp
     &lt;chr&gt;                   &lt;int&gt;  &lt;int&gt;
-  1 Sat, Jan 16, 2021         347     47
-  2 Sat, Jan 23, 2021         574     29
-  3 Sat, Jan 9, 2021          386     40</code></pre>
+  1 Sat, Jan 16, 2021         336     47
+  2 Sat, Jan 23, 2021         522     29
+  3 Sat, Jan 9, 2021          379     40</code></pre>
 <pre class="r"><code>######################################Step 5: Selecting events of interests and final summary #####################
 Events.of.Interest =
 Winter.Workshop.2021.Combined.Listing %&gt;% slice(which(grepl('career|job|tech|code|cville|charlottesville|computer|silicon|science', Event.Name, ignore.case = TRUE) == TRUE)) %&gt;% # searching by key words 
@@ -322,68 +318,68 @@ print(Events.of.Interest)</code></pre>
   25    Sat, Jan 9, 2021  5:00 PM PST
   71    Sat, Jan 9, 2021  1:00 PM PST
   105   Sat, Jan 9, 2021  5:00 PM GMT
-  508   Sat, Jan 9, 2021  7:00 AM MST
-  533   Sat, Jan 9, 2021  1:00 PM GMT
-  639   Sat, Jan 9, 2021 11:30 PM CST
-  642   Sat, Jan 9, 2021  2:00 AM EST
-  656   Sat, Jan 9, 2021  7:00 AM GMT
-  694   Sat, Jan 9, 2021  7:00 PM CET
-  736  Sat, Jan 16, 2021  5:00 PM PST
-  754  Sat, Jan 16, 2021  9:00 AM CST
-  783  Sat, Jan 16, 2021  1:00 PM PST
-  819  Sat, Jan 16, 2021  5:00 PM GMT
-  1205 Sat, Jan 16, 2021  7:00 AM MST
-  1230 Sat, Jan 16, 2021  1:00 PM GMT
-  1335 Sat, Jan 16, 2021 11:30 PM CST
-  1338 Sat, Jan 16, 2021  2:00 AM EST
-  1388 Sat, Jan 16, 2021  7:00 PM CET
-  1428 Sat, Jan 23, 2021  5:00 PM PST
-  1499 Sat, Jan 23, 2021  5:00 PM GMT
-  981  Sat, Jan 23, 2021     10:00 AM
+  507   Sat, Jan 9, 2021  7:00 AM MST
+  532   Sat, Jan 9, 2021  1:00 PM GMT
+  633   Sat, Jan 9, 2021 11:30 PM CST
+  641   Sat, Jan 9, 2021  2:00 AM EST
+  655   Sat, Jan 9, 2021  7:00 AM GMT
+  693   Sat, Jan 9, 2021  7:00 PM CET
+  738  Sat, Jan 16, 2021  5:00 PM PST
+  758  Sat, Jan 16, 2021  9:00 AM CST
+  782  Sat, Jan 16, 2021  1:00 PM PST
+  809  Sat, Jan 16, 2021  5:00 PM GMT
+  1196 Sat, Jan 16, 2021  7:00 AM MST
+  1228 Sat, Jan 16, 2021  1:00 PM GMT
+  1334 Sat, Jan 16, 2021 11:30 PM CST
+  1337 Sat, Jan 16, 2021  2:00 AM EST
+  1387 Sat, Jan 16, 2021  7:00 PM CET
+  1427 Sat, Jan 23, 2021  5:00 PM PST
+  1498 Sat, Jan 23, 2021  5:00 PM GMT
+  983  Sat, Jan 23, 2021     10:00 AM
                                                                          Event.Name
   25              Career pathways /counseling and referrals to Silicon Valley jobs 
   71                                    FREE LIVE-Webinar Financial Career Seminar 
   105         Career Head Start Masterclass - IT &amp; Consulting &amp; Project Management 
-  508                                             Career Event for Business Majors 
-  533          Java Basics in 3 hours.  Code the Hangman Game.  Virtual Classroom. 
-  639  Artificial Intelligence | Online Instructor Training at Vepsun Technologies 
-  642                                  Science NBE Package (For independent study) 
-  656  Business &amp; Professional &gt; Sales &amp; Marketing / Career / Startups &amp; Small Bus 
-  694   Der Affiliate Code - Ralf Schmitz - einzigartige Erfolgsgranate  (Klicken) 
-  736             Career pathways /counseling and referrals to Silicon Valley jobs 
-  754                                         CODE + BREWS Virtual: Third Saturday 
-  783                                   FREE LIVE-Webinar Financial Career Seminar 
-  819         Career Head Start Masterclass - IT &amp; Consulting &amp; Project Management 
-  1205                                            Career Event for Business Majors 
-  1230         Java Basics in 3 hours.  Code the Hangman Game.  Virtual Classroom. 
-  1335 Artificial Intelligence | Online Instructor Training at Vepsun Technologies 
-  1338                                 Science NBE Package (For independent study) 
-  1388  Der Affiliate Code - Ralf Schmitz - einzigartige Erfolgsgranate  (Klicken) 
-  1428            Career pathways /counseling and referrals to Silicon Valley jobs 
-  1499        Career Head Start Masterclass - IT &amp; Consulting &amp; Project Management 
-  981                                 LeetCode: online : Questions on google groups
+  507                                             Career Event for Business Majors 
+  532          Java Basics in 3 hours.  Code the Hangman Game.  Virtual Classroom. 
+  633  Artificial Intelligence | Online Instructor Training at Vepsun Technologies 
+  641                                  Science NBE Package (For independent study) 
+  655  Business &amp; Professional &gt; Sales &amp; Marketing / Career / Startups &amp; Small Bus 
+  693   Der Affiliate Code - Ralf Schmitz - einzigartige Erfolgsgranate  (Klicken) 
+  738             Career pathways /counseling and referrals to Silicon Valley jobs 
+  758                                         CODE + BREWS Virtual: Third Saturday 
+  782                                   FREE LIVE-Webinar Financial Career Seminar 
+  809         Career Head Start Masterclass - IT &amp; Consulting &amp; Project Management 
+  1196                                            Career Event for Business Majors 
+  1228         Java Basics in 3 hours.  Code the Hangman Game.  Virtual Classroom. 
+  1334 Artificial Intelligence | Online Instructor Training at Vepsun Technologies 
+  1337                                 Science NBE Package (For independent study) 
+  1387  Der Affiliate Code - Ralf Schmitz - einzigartige Erfolgsgranate  (Klicken) 
+  1427            Career pathways /counseling and referrals to Silicon Valley jobs 
+  1498        Career Head Start Masterclass - IT &amp; Consulting &amp; Project Management 
+  983                                 LeetCode: online : Questions on google groups
             Source
   25   Event.Brite
   71   Event.Brite
   105  Event.Brite
-  508  Event.Brite
-  533  Event.Brite
-  639  Event.Brite
-  642  Event.Brite
-  656  Event.Brite
-  694  Event.Brite
-  736  Event.Brite
-  754  Event.Brite
-  783  Event.Brite
-  819  Event.Brite
-  1205 Event.Brite
-  1230 Event.Brite
-  1335 Event.Brite
-  1338 Event.Brite
-  1388 Event.Brite
-  1428 Event.Brite
-  1499 Event.Brite
-  981       MeetUp</code></pre>
+  507  Event.Brite
+  532  Event.Brite
+  633  Event.Brite
+  641  Event.Brite
+  655  Event.Brite
+  693  Event.Brite
+  738  Event.Brite
+  758  Event.Brite
+  782  Event.Brite
+  809  Event.Brite
+  1196 Event.Brite
+  1228 Event.Brite
+  1334 Event.Brite
+  1337 Event.Brite
+  1387 Event.Brite
+  1427 Event.Brite
+  1498 Event.Brite
+  983       MeetUp</code></pre>
 <pre class="r"><code># Final summary of events of interest
 Events.of.Interest %&gt;% group_by(Event.Date) %&gt;% dplyr::summarise(no.of.events = n()) %&gt;% arrange(no.of.events)</code></pre>
 <pre><code>  # A tibble: 3 x 2
