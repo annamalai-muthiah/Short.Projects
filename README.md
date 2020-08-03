@@ -1,3 +1,3 @@
 # Learning.to.do.it
-I am just starting on GitHub
+I love to code and share it with the world
 
